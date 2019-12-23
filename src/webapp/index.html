@@ -1,0 +1,78 @@
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>Cadastro Treinador</title>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+		$("#btn_salvar").click(
+				
+				function()
+				{
+					treinador = {
+									"nome"   : $('#txt_nome').val("")   
+							    }
+					
+					$.ajax({
+						
+						url: "http://localhost:8080/treinador/",
+						type: "POST",
+						data:JSON.stringify(treinador),
+						contentType: "application/json",
+						success:
+							function(response)
+							{
+								console.log(response.id);
+								console.log(response.nome);
+							}
+						
+					});
+				}
+		
+		);
+		
+		$("#btn_limpar").click(
+				
+				function()
+				{
+					$('#txt_id').val("");
+					$('#txt_nome').val("");
+				}
+		
+		);
+		
+		
+	})
+	
+	</script>
+	
+</head>
+<body>
+
+	<div class="form">
+		<div class="form-row">
+			<label class="col-md-1" for="txt_id">Id : </label>
+			<input class="col-md-1 form-control" id="txt_id" placeholder="Ex: 1">
+		</div>
+		<div class="form-row">
+			<label class="col-md-1" for="txt_nome">Nome Do Treinador : </label>
+			<input class="col-md-3 form-control" id="txt_nome" placeholder="Ex: Jerederson da Silva">
+		</div>
+		
+		<div>
+			<button id="btn_limpar">Limpar</button>
+			<button id="btn_salvar">Salvar</button>
+		</div>
+	</div>
+
+
+
+
+</body>
+</html>
